@@ -2,6 +2,10 @@
   "name": "@fieldwork/react-router-redux-auth",
   "version": "1.0.0",
   "description": "React Router routes that redirect based on where a user is logged in using @fieldwork/redux-auth",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EMT/react-router-redux-auth"
+  },
   "main": "dist/index.js",
   "scripts": {
     "build": "npm run clean && babel src -d dist --ignore **/*.test.js,**/__snapshots__",
