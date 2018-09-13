@@ -1,0 +1,47 @@
+{
+  "name": "@fieldwork/react-router-redux-auth",
+  "version": "1.0.0",
+  "description": "React Router routes that redirect based on where a user is logged in using @fieldwork/redux-auth",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run clean && babel src -d dist --ignore **/*.test.js,**/__snapshots__",
+    "clean": "rm -rf ./dist",
+    "eslint": "eslint ./src --fix",
+    "flow": "flow",
+    "prepublishOnly": "npm run build",
+    "test": "jest",
+    "test:watch": "npm test -- --watch"
+  },
+  "author": "Fieldwork",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.1",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@fieldwork/eslint-config-fieldwork": "^1.3.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^9.0.0",
+    "eslint": "^5.5.0",
+    "eslint-plugin-flowtype": "^2.50.0",
+    "jest": "^23.6.0",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-test-renderer": "^16.5.0",
+    "redux": "^4.0.0"
+  },
+  "peerDependencies": {
+    "react-router-dom": ">=4.3.1",
+    "react": ">=16.3.0",
+    "react-redux": ">=5.0.0",
+    "redux": ">=4.0.0"
+  },
+  "dependencies": {
+    "@fieldwork/redux-auth": "^1.0.3"
+  }
+}
