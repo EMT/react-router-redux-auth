@@ -1,20 +1,18 @@
 // @flow
 import React from 'react'
 import type { ComponentType } from 'react'
+import type { TypeLocation } from '../types'
+import { withRouter } from 'react-router-dom'
 import { withAuth } from '@fieldwork/redux-auth'
 import ConditionalRedirect from './ConditionalRedirect'
 
 type TypeProps = {
     component: ComponentType<{ [key: string]: any }>,
-    location: ?{
-        state: ?{
-            from: ?{
-                pathname: ?string,
-            },
-        },
-    },
     redirectTo: string | ( authUser: {}, redirectUrl: ?string ) => string,
-    skipStateLocation: boolean,
+    ignoreStateLocation: boolean,
+
+    // from router
+    location: ?TypeLocation,
 
     // from withAuth
     auth: {
@@ -24,7 +22,7 @@ type TypeProps = {
 }
 
 const defaultProps = {
-    skipStateLocation: false,
+    ignoreStateLocation: false,
 }
 
 const RedirectAuthenticated = ( {
@@ -32,28 +30,32 @@ const RedirectAuthenticated = ( {
     location,
     auth,
     redirectTo,
-    skipStateLocation,
+    ignoreStateLocation,
     ...rest
 }: TypeProps ) => {
-    let redirectUrl
+    const redirectUrl = ( redirectTo, ignoreStateLocation ) => ( location: TypeLocation ) => {
+        let redirectUrl
 
-    if ( !skipStateLocation ) {
-        redirectUrl = location && location.state && location.state.from ?
-            location.state.from.pathname :
-            null
-    }
+        if ( !ignoreStateLocation ) {
+            redirectUrl = location && location.state && location.state.from ?
+                location.state.from :
+                null
+        }
 
-    if ( !redirectUrl ) {
-        redirectUrl = ( typeof redirectTo === 'function' ) ?
-            redirectTo( auth.user, redirectUrl ) :
-            redirectTo
+        if ( !redirectUrl ) {
+            redirectUrl = ( typeof redirectTo === 'function' ) ?
+                redirectTo( auth.user, redirectUrl ) :
+                redirectTo
+        }
+
+        return redirectUrl
     }
 
     return (
         <ConditionalRedirect
             component={ component }
             redirect={ !!auth.hasSucceeded }
-            redirectTo={ redirectUrl }
+            redirectTo={ redirectUrl( redirectTo, ignoreStateLocation ) }
             { ...rest }
         />
     )
@@ -61,4 +63,4 @@ const RedirectAuthenticated = ( {
 
 RedirectAuthenticated.defaultProps = defaultProps
 
-export default withAuth( RedirectAuthenticated )
+export default withRouter( withAuth( RedirectAuthenticated ) )

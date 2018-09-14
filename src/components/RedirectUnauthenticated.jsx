@@ -1,6 +1,7 @@
 // @flow
 import React from 'react'
 import type { ComponentType } from 'react'
+import { withRouter } from 'react-router-dom'
 import { withAuth } from '@fieldwork/redux-auth'
 import ConditionalRedirect from './ConditionalRedirect'
 
@@ -22,10 +23,10 @@ const RedirectUnauthenticated = ( {
 }: TypeProps ) => (
     <ConditionalRedirect
         component={ component }
-        redirect={ auth.hasFailed }
+        redirect={ !!auth.hasFailed }
         redirectTo={ redirectTo }
         { ...rest }
     />
 )
 
-export default withAuth( RedirectUnauthenticated )
+export default withRouter( withAuth( RedirectUnauthenticated ) )

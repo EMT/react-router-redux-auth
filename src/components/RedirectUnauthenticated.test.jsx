@@ -2,7 +2,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
-import { StaticRouter } from 'react-router-dom'
+import { StaticRouter, MemoryRouter, Route } from 'react-router-dom'
 import { authReducer } from '@fieldwork/redux-auth'
 import RedirectUnauthenticated from './RedirectUnauthenticated'
 
@@ -64,5 +64,34 @@ describe( 'RedirectUnauthenticated component', () => {
 
         const tree = component.toJSON()
         expect( tree ).toBe( null )
+    } )
+
+    test( 'sets `location.state.from` when redirecting', () => {
+        let loc
+
+        const component = renderer.create(
+            <MemoryRouter initialEntries={ ['/private'] }>
+                <Provider store={ store }>
+                    <div>
+                        <RedirectUnauthenticated
+                            path="/private"
+                            component={ TestPrivateComponent }
+                            redirectTo="/login"
+                        />
+                        <Route
+                            path="/login"
+                            render={ ( { location } ) => {
+                                loc = location
+                                return null
+                            } }
+                        />
+                    </div>
+                </Provider>
+            </MemoryRouter>,
+        )
+
+        store.dispatch( { type: 'AUTH_SET_SUCCEEDED' } )
+
+        expect( loc.state.from.pathname ).toBe( '/private' )
     } )
 } )

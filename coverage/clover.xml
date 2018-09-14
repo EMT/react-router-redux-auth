@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1536887389656" clover="3.2.0">
+  <project timestamp="1536887389656" name="All files">
+    <metrics statements="24" coveredstatements="24" conditionals="21" coveredconditionals="21" methods="6" coveredmethods="6" elements="51" coveredelements="51" complexity="0" loc="24" ncloc="24" packages="1" files="3" classes="3">
+      <file name="ConditionalRedirect.jsx" path="/Users/andy/tools/react-router-redux-auth/src/components/ConditionalRedirect.jsx">
+        <metrics statements="12" coveredstatements="12" conditionals="10" coveredconditionals="10" methods="2" coveredmethods="2"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="19" count="48" type="stmt"/>
+        <line num="23" count="32" type="stmt"/>
+        <line num="25" count="32" type="cond" truecount="2" falsecount="0"/>
+        <line num="26" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="30" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="34" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="10" type="stmt"/>
+        <line num="36" count="10" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="43" count="31" type="stmt"/>
+      </file>
+      <file name="RedirectAuthenticated.jsx" path="/Users/andy/tools/react-router-redux-auth/src/components/RedirectAuthenticated.jsx">
+        <metrics statements="10" coveredstatements="10" conditionals="11" coveredconditionals="11" methods="3" coveredmethods="3"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="36" count="20" type="stmt"/>
+        <line num="39" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="40" count="3" type="cond" truecount="5" falsecount="0"/>
+        <line num="45" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="46" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="51" count="5" type="stmt"/>
+        <line num="54" count="20" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
+      </file>
+      <file name="RedirectUnauthenticated.jsx" path="/Users/andy/tools/react-router-redux-auth/src/components/RedirectUnauthenticated.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="24" count="27" type="stmt"/>
+      </file>
+    </metrics>
+  </project>
+</coverage>
