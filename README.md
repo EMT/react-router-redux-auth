@@ -1,6 +1,6 @@
 # @fieldwork/react-router-redux-auth
 
-React Router routes that redirect based on whether a user is logged in using (@fieldwork/redux-auth)[https://www.npmjs.com/package/@fieldwork/redux-auth].
+React Router routes that redirect based on whether a user is logged in using [@fieldwork/redux-auth](https://www.npmjs.com/package/@fieldwork/redux-auth).
 
 ## API
 
