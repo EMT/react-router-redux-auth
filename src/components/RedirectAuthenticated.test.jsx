@@ -3,7 +3,11 @@ import renderer from 'react-test-renderer'
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import { StaticRouter, MemoryRouter, Route } from 'react-router-dom'
-import { authReducer } from '@fieldwork/redux-auth'
+import {
+    authReducer,
+    authSetFailed,
+    authSetSucceeded,
+} from '@fieldwork/redux-auth'
 import RedirectAuthenticated from './RedirectAuthenticated'
 import RedirectUnauthenticated from './RedirectUnauthenticated'
 
@@ -46,7 +50,7 @@ describe( 'RedirectAuthenticated component', () => {
             </StaticRouter>
         )
 
-        store.dispatch( { type: 'AUTH_SET_FAILED' } )
+        store.dispatch( authSetFailed() )
 
         const tree = component.toJSON()
         expect( tree.children ).toEqual( expected )
@@ -65,7 +69,7 @@ describe( 'RedirectAuthenticated component', () => {
             </StaticRouter>
         )
 
-        store.dispatch( { type: 'AUTH_SET_SUCCEEDED' } )
+        store.dispatch( authSetSucceeded() )
 
         const tree = component.toJSON()
         expect( tree ).toEqual( null )
@@ -112,11 +116,11 @@ describe( 'RedirectAuthenticated component', () => {
         let tree = component.toJSON()
         expect( tree.children[0].children ).toEqual( [ 'This is private' ] )
 
-        store.dispatch( { type: 'AUTH_SET_FAILED' } )
+        store.dispatch( authSetFailed() )
         tree = component.toJSON()
         expect( tree.children[0].children ).toEqual( [ 'Login' ] )
 
-        store.dispatch( { type: 'AUTH_SET_SUCCEEDED' } )
+        store.dispatch( authSetSucceeded() )
         tree = component.toJSON()
         expect( tree.children[0].children ).toEqual( [ 'This is private' ] )
     } )
@@ -163,11 +167,11 @@ describe( 'RedirectAuthenticated component', () => {
         let tree = component.toJSON()
         expect( tree.children[0].children ).toEqual( [ 'This is private' ] )
 
-        store.dispatch( { type: 'AUTH_SET_FAILED' } )
+        store.dispatch( authSetFailed() )
         tree = component.toJSON()
         expect( tree.children[0].children ).toEqual( [ 'Login' ] )
 
-        store.dispatch( { type: 'AUTH_SET_SUCCEEDED' } )
+        store.dispatch( authSetSucceeded() )
         tree = component.toJSON()
         expect( tree.children[0].children ).toEqual( [ 'We should arrive here' ] )
     } )
@@ -214,7 +218,7 @@ describe( 'RedirectAuthenticated component', () => {
         let tree = component.toJSON()
         expect( tree.children[0].children ).toEqual( [ 'Login' ] )
 
-        store.dispatch( { type: 'AUTH_SET_SUCCEEDED' } )
+        store.dispatch( authSetSucceeded() )
         tree = component.toJSON()
         expect( tree.children[0].children ).toEqual( [ 'We should arrive here' ] )
     } )
@@ -244,8 +248,7 @@ describe( 'RedirectAuthenticated component', () => {
             </MemoryRouter>
         )
 
-        store.dispatch( { type: 'AUTH_SET_USER', payload: { username: 'testuser' } } )
-        store.dispatch( { type: 'AUTH_SET_SUCCEEDED' } )
+        store.dispatch( authSetSucceeded( 123, { username: 'testuser' } ) )
         const tree = component.toJSON()
         expect( tree.children[0].children).toEqual( [ 'The user dashboard for testuser.' ] )
     } )

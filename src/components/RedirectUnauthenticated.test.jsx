@@ -3,7 +3,11 @@ import renderer from 'react-test-renderer'
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import { StaticRouter, MemoryRouter, Route } from 'react-router-dom'
-import { authReducer } from '@fieldwork/redux-auth'
+import {
+    authReducer,
+    authSetFailed,
+    authSetSucceeded,
+} from '@fieldwork/redux-auth'
 import RedirectUnauthenticated from './RedirectUnauthenticated'
 
 const store = createStore( combineReducers( { auth: authReducer } ) )
@@ -41,7 +45,7 @@ describe( 'RedirectUnauthenticated component', () => {
             </StaticRouter>,
         )
 
-        store.dispatch( { type: 'AUTH_SET_SUCCEEDED' } )
+        store.dispatch( authSetSucceeded() )
 
         const tree = component.toJSON()
         expect( tree.children ).toEqual( expected )
@@ -60,7 +64,7 @@ describe( 'RedirectUnauthenticated component', () => {
             </StaticRouter>,
         )
 
-        store.dispatch( { type: 'AUTH_SET_FAILED' } )
+        store.dispatch( authSetFailed() )
 
         const tree = component.toJSON()
         expect( tree ).toBe( null )
@@ -90,7 +94,7 @@ describe( 'RedirectUnauthenticated component', () => {
             </MemoryRouter>,
         )
 
-        store.dispatch( { type: 'AUTH_SET_SUCCEEDED' } )
+        store.dispatch( authSetSucceeded() )
 
         expect( loc.state.from.pathname ).toBe( '/private' )
     } )

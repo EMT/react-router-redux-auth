@@ -46,6 +46,6 @@
     "redux": ">=4.0.0"
   },
   "dependencies": {
-    "@fieldwork/redux-auth": "^2.0.1"
+    "@fieldwork/redux-auth": "^2.2.0"
   }
 }
