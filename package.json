@@ -1,6 +1,6 @@
 {
   "name": "@fieldwork/react-router-redux-auth",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "React Router routes that redirect based on whether a user is logged in using @fieldwork/redux-auth",
   "repository": {
     "type": "git",
