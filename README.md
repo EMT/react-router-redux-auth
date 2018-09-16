@@ -64,3 +64,7 @@ Setting `ignoreStateLocation` to `true` forces the use of the `redirectTo` prop 
     redirectTo="/my-dashboard"
 />
 ```
+
+### @fieldwork/redux-auth
+
+This package also exposes `authReducer` and `withAuth` from [@fieldwork/redux-auth](https://www.npmjs.com/package/@fieldwork/redux-auth).
